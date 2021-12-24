@@ -1,8 +1,8 @@
 import client from "@sanity/client";
 
 export default client({
-  projectId: "pfmait3t",
-  dataset: "production",
+  projectId: [YOUR_SANITY_PROJECT_ID],
+  dataset: [HERE_WILL_BE_PRODUCTION],
   useCdn: true,
-  apiVersion: "2021-12-17",
+  apiVersion: [YEAR - MONTH - DATE],
 });

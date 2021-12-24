@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# Eleventy and Sanity Blog Boilerplate
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Minimal blog with [Eleventy](https://11ty.io) and [Sanity](https://www.sanity.io).
 
-## Available Scripts
+This is a monorepo with a pre-configured Sanity Studio (`/blogpages`) and a very basic setup of Eleventy (`/web`).
 
-In the project directory, you can run:
+- [Quick start](#quick-start)
+- [Deploy on Netlify](#deploy-on-netlify)
+  - [blogpages](#blogpages)
+  - [Web](#web)
+- [Deploy on `now`](#deploy-on-now)
+- [CORS-settings for the blogpages](#cors-settings-for-the-blogpages)
 
-### `npm start`
+## Quick start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. `npm install` in the project root folder on local
+2. `npm run sanity-init` to reconfigure the studio with a new or existing project
+3. `npm run dev` to start the Studio and 11ty in watch mode
+   - Sanity Studio runs on [localhost:3333](http://localhost:3333)
+   - 11ty outputs the static files in `_site`
+4. `npm run build` to build to production locally
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Deploy on Netlify
 
-### `npm test`
+You can host both the studio and the 11ty blog on [Netlify](https://netlify.com) as two apps. Log in to your Netlify account and add them as two separate apps with the following settings:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Studio
 
-### `npm run build`
+- **Repository**: `<your repository>`
+- **Base directory**: `blogpages`
+- **Build command**: `npm run build && cp ./netlify.toml dist`
+- **Publish directory**: `blogpages/dist`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You have to add [CORS-settings](#cors-settings-for-the-blogpages) for the blogpages deployed on Netlify.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Web
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Repository**: `<your repository>`
+- **Base directory**: `web`
+- **Build command**: `npm run build-web`
+- **Publish directory**: `web/_site`
 
-### `npm run eject`
+## Deploy on `now`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The `now.json` has configuration for deploying both the frontend and the studio on _one_ now deployment. The web frontend can be browsed from the root of your now domain. The Studio can be accessed on `https://<your-domain>.now.sh/studio`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Add a `"basePath": "/blogpages"` to `sanity.json`:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```json
+   "project": {
+       "name": "blogpages",
+       "basePath": "/blogpages"
+     },
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. You have to add CORS-settings for the studio deployed on `now`.
 
-## Learn More
+## CORS-settings for the Studio
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Go to your projects API-settings on [manage.sanity.io](https://manage.sanity.io) => Settings => API => CORS origins => Click "Add" => Add domain for the now deployment + Allow credentials.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+or
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```text
+> cd studio
+> sanity cors add https://<your-domain>.now.sh`
+```

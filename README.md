@@ -62,6 +62,6 @@ Go to your projects API-settings on [manage.sanity.io](https://manage.sanity.io)
 or
 
 ```text
-> cd studio
+> cd blogpages
 > sanity cors add https://<your-domain>.now.sh`
 ```

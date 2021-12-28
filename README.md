@@ -1,5 +1,9 @@
 # Eleventy and Sanity Blog Boilerplate
 
+```
+git clone https://github.com/Milan-960/Sanity-blog.git
+```
+
 Minimal blog with [Eleventy](https://11ty.io) and [Sanity](https://www.sanity.io).
 
 This is a monorepo with a pre-configured Sanity Studio (`/blogpages`) and a very basic setup of Eleventy (`/web`).

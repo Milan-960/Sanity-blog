@@ -1,6 +1,6 @@
 # Eleventy and Sanity Blog Boilerplate
 
-## Pest this below code in your terminal to download in your pc
+## Pest below link in your terminal to download in your pc 👇
 
 ```
 git clone https://github.com/Milan-960/Sanity-blog.git
@@ -17,7 +17,7 @@ This is a monorepo with a pre-configured Sanity Studio (`/blogpages`) and a very
 - [Deploy on `now`](#deploy-on-now)
 - [CORS-settings for the blogpages](#cors-settings-for-the-blogpages)
 
-## Run the app
+# Run the app
 
 1. `npm install` in the project root folder on local
 2. `npm run sanity-init` to reconfigure the studio with a new or existing project

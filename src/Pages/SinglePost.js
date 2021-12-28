@@ -32,7 +32,7 @@ export default function SinglePost() {
   return (
     <>
       {isLoading ? (
-        <h1>Loading Milan's Blogs...</h1>
+        <h1>Loading...</h1>
       ) : (
         <section>
           <h1>{singlePost.title}</h1>
@@ -41,6 +41,7 @@ export default function SinglePost() {
               src={singlePost.mainImage.asset.url}
               alt={singlePost.title}
               title={singlePost.title}
+              className="blog__image rounded-t"
             />
           )}
           <p>By Milan Sachani</p>
@@ -48,7 +49,7 @@ export default function SinglePost() {
           <div className="block__content">
             <BlockContent
               blocks={singlePost.body}
-              projectId="pfmait3t"
+              projectId=""
               dataset="production"
             />
           </div>
